@@ -4,32 +4,40 @@ from utils.logger import logger
 # Menú principal
 def menu():
     while True:
-        print("\n🐾 Clínica Veterinaria 'Amigos Peludos' 🐾\n")
-        print("1. Registrar mascota")
-        print("2. Registrar consulta")
-        print("3. Listar mascotas")
-        print("4. Ver historial de consultas")
-        print("5. Salir")
+        print(
+            """
+🐾 Clínica Veterinaria 'Amigos Peludos' 🐾
 
-        opcion = input("\nSeleccione una opción (1-5): ")
+1. Registrar mascota
+2. Registrar consulta
+3. Listar mascotas
+4. Ver historial de consultas
+5. Salir
+"""
+        )
 
-        if opcion == '1':
+        try:
+            opcion = int(input("Seleccione una opción (1-5): "))
+        except ValueError:
+            print("\nEntrada inválida. Por favor, ingrese un número del 1 al 5.\n")
+            continue
+
+        if opcion == 1:
             registrar_mascota()
-        elif opcion == '2':
+        elif opcion == 2:
             registrar_consulta()
-        elif opcion == '3':
+        elif opcion == 3:
             listar_mascotas()
-        elif opcion == '4':
+        elif opcion == 4:
             ver_historial_consultas()
-        elif opcion == '5':
+        elif opcion == 5:
             print("\nGracias por usar la aplicación. ¡Hasta pronto!")
             break
         else:
-            print("\nOpción no válida. Intente nuevamente.\n")
-
+            print("\nOpción fuera de rango. Intente nuevamente.\n")
 
 # Ejecutar el menú
 if __name__ == "__main__":
     logger.info("Aplicación iniciada")
-    menu()  # llama a la función del menú
-    logger.info("Aplicación finalizada")    
+    menu()
+    logger.info("Aplicación finalizada")
