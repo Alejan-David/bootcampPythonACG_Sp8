@@ -1,4 +1,4 @@
-from utils.funciones import registrar_mascota, registrar_consulta, listar_mascotas, ver_historial_consultas
+from utils.funciones import registrar_mascota, registrar_consulta, listar_mascotas, ver_historial_consultas, cargar_datos_almacenados
 from utils.logger import logger
 
 # Menú principal
@@ -39,5 +39,6 @@ def menu():
 # Ejecutar el menú
 if __name__ == "__main__":
     logger.info("Aplicación iniciada")
+    cargar_datos_almacenados()
     menu()
     logger.info("Aplicación finalizada")
