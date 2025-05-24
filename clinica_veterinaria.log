@@ -8,3 +8,34 @@
 2025-05-20 14:30:14,891 - INFO - Aplicación iniciada
 2025-05-20 14:30:14,892 - INFO - Datos de mascotas cargados correctamente desde CSV.
 2025-05-20 14:30:14,900 - INFO - Consultas cargadas correctamente desde JSON.
+2025-05-23 18:45:27,913 - INFO - Aplicación iniciada
+2025-05-23 18:45:27,914 - WARNING - No se encontró el archivo CSV: c:\Users\1\OneDrive\Escritorio\bootcampPythonACG_Sp6\almacenamiento\mascotas_dueños.csv
+2025-05-23 18:45:27,914 - WARNING - No se encontró el archivo JSON: c:\Users\1\OneDrive\Escritorio\bootcampPythonACG_Sp6\almacenamiento\consultas.json
+2025-05-23 18:46:04,451 - ERROR - Error registrando mascota: name 'nombre_mascota' is not defined
+2025-05-23 18:51:36,447 - INFO - Aplicación iniciada
+2025-05-23 18:51:36,542 - INFO - Datos de mascotas cargados correctamente desde CSV.
+2025-05-23 18:51:36,542 - WARNING - No se encontró el archivo JSON: c:\Users\1\OneDrive\Escritorio\bootcampPythonACG_Sp6\almacenamiento\consultas.json
+2025-05-23 18:51:58,732 - INFO - Mascota registrada: Eros - Dueño: Mariangelica
+2025-05-23 18:51:58,732 - INFO - Mascota registrada: Eros - Dueño: Mariangelica
+2025-05-23 18:52:53,033 - INFO - Mascota registrada: Bolas - Dueño: Wilson
+2025-05-23 18:52:53,034 - INFO - Mascota registrada: Bolas - Dueño: Wilson
+2025-05-23 18:54:17,429 - INFO - Aplicación iniciada
+2025-05-23 18:54:17,461 - INFO - Datos de mascotas cargados correctamente desde CSV.
+2025-05-23 18:54:17,461 - WARNING - No se encontró el archivo JSON: c:\Users\1\OneDrive\Escritorio\bootcampPythonACG_Sp6\almacenamiento\consultas.json
+2025-05-23 18:54:35,057 - ERROR - Error: La mascota 'Eros' ya está registrada con el dueño 'Mariangelica'.
+2025-05-23 18:55:47,649 - INFO - Mascota registrada: Pepe - Dueño: Andrea
+2025-05-23 19:32:12,292 - INFO - Aplicación iniciada
+2025-05-23 19:32:12,295 - INFO - Datos de mascotas cargados correctamente desde CSV.
+2025-05-23 19:32:12,295 - WARNING - No se encontró el archivo JSON: c:\Users\1\OneDrive\Escritorio\bootcampPythonACG_Sp6\almacenamiento\consultas.json
+2025-05-23 19:32:37,331 - INFO - Mascota registrada: Eros - Dueño: Wilson
+2025-05-23 19:32:44,103 - ERROR - Error registrando consulta: cannot unpack non-iterable function object
+2025-05-23 19:35:36,479 - ERROR - Error registrando consulta: cannot unpack non-iterable function object
+2025-05-23 19:35:49,329 - INFO - Aplicación iniciada
+2025-05-23 19:35:49,331 - INFO - Datos de mascotas cargados correctamente desde CSV.
+2025-05-23 19:35:49,332 - WARNING - No se encontró el archivo JSON: c:\Users\1\OneDrive\Escritorio\bootcampPythonACG_Sp6\almacenamiento\consultas.json
+2025-05-23 19:36:08,342 - ERROR - Error registrando consulta: 'NoneType' object has no attribute 'strftime'
+2025-05-23 19:38:23,614 - INFO - Aplicación iniciada
+2025-05-23 19:38:23,615 - INFO - Datos de mascotas cargados correctamente desde CSV.
+2025-05-23 19:38:23,615 - WARNING - No se encontró el archivo JSON: c:\Users\1\OneDrive\Escritorio\bootcampPythonACG_Sp6\almacenamiento\consultas.json
+2025-05-23 19:38:40,376 - INFO - Consulta registrada para Eros en 10/11/2025
+2025-05-23 19:39:06,182 - INFO - Consulta registrada para Pepe en 12/12/2025

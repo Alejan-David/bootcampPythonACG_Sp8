@@ -1,0 +1,44 @@
+[
+    {
+        "fecha": "10/11/2025",
+        "motivo": "Dolor",
+        "diagnostico": "Dolor",
+        "nombre_mascota": "Eros",
+        "especie": "Perro",
+        "raza": "Golden",
+        "edad": 4,
+        "dueno": {
+            "nombre": "Mariangelica",
+            "telefono": "300",
+            "direccion": "calle"
+        }
+    },
+    {
+        "fecha": "12/12/2025",
+        "motivo": "Dolor",
+        "diagnostico": "Dolor",
+        "nombre_mascota": "Pepe",
+        "especie": "Perro",
+        "raza": "Criollo",
+        "edad": 1,
+        "dueno": {
+            "nombre": "Andrea",
+            "telefono": "400",
+            "direccion": "calle"
+        }
+    },
+    {
+        "fecha": "10/10/2024",
+        "motivo": "Dolor",
+        "diagnostico": "Dolor",
+        "nombre_mascota": "Eros",
+        "especie": "Perro",
+        "raza": "Golden",
+        "edad": 4,
+        "dueno": {
+            "nombre": "Mariangelica",
+            "telefono": "300",
+            "direccion": "calle"
+        }
+    }
+]
