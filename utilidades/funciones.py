@@ -1,8 +1,14 @@
 from modelos.dueno import Dueno
 from modelos.mascota import Mascota
 from modelos.consulta import Consulta
-from utils.logger import logger
+from utilidades.logger import logger
 from datetime import datetime
+from base_datos.funciones_bd import agregar_mascota
+from base_datos.funciones_bd import agregar_dueno
+from base_datos.funciones_bd import eliminar_dueno
+from base_datos.funciones_bd import eliminar_dueno
+from base_datos.funciones_bd import listar_mascota_dueno
+
 import os
 import csv
 import json
@@ -81,30 +87,50 @@ def registrar_mascota():
         
         dueno = Dueno(nombre_dueno, telefono, direccion)
         mascota = Mascota(nombre_mascota, especie, raza, edad, dueno)
-        mascotas_registradas[nombre_mascota.lower()] = mascota
 
-        #llamar la función de crear carpeta
+        #llamar la función de crear carpeta y ruta del archivo CSV
         ruta_carpeta = crear_carpeta()
-
-        # Ruta del archivo CSV
         ruta_archivo = os.path.join(ruta_carpeta, "mascotas_dueños.csv")
 
         #llamar la función para verificar_duplicado 
         if verificar_duplicado(nombre_mascota,nombre_dueno,ruta_archivo):
-            return #no continua con el registro
+            return 
 
         guardar_archivo_csv(
             [nombre_mascota, especie, raza, edad, nombre_dueno, telefono, direccion],
             ruta_archivo
         )
-    
+        #Registrar dueño en base de datos
+        respuesta_dueno = agregar_dueno(dueno.__dict__)
+        if not respuesta_dueno["Respuesta"]:
+            mensaje = f"No se pudo registrar el dueño: {respuesta_dueno['Mensaje']}"
+            print(mensaje)
+            logger.error(mensaje)
+            return
+        
+        #asignar el ID al dueño
+        dueno.id = respuesta_dueno["id"]
+        mascota.dueno = dueno
+
+        #Registrar en base de datos mascota
+        respuesta_mascota = agregar_mascota(mascota)
+        if not respuesta_mascota["Respuesta"]:
+            print("No se pudo registrar la mascota:", respuesta_mascota["Mensaje"])
+            print(mensaje)
+            logger.error(mensaje)
+
+            #Si falla mascota, eliminar dueño creado
+            eliminar_dueno(dueno.id)
+            print(f"El dueño '{nombre_dueno}' fue eliminado porque no se pudo registrar la mascota.")
+            logger.info(f"Dueño con ID {dueno.id} eliminado por fallo en registro de mascota.")
+            return
+        
         logger.info(f"Mascota registrada: {nombre_mascota} - Dueño: {nombre_dueno}")
         print(f"\nMascota '{nombre_mascota}' registrada con éxito.\n")
-
+        
     except Exception as e:
         logger.error(f"Error registrando mascota: {str(e)}")
         print("Ocurrió un error al registrar la mascota.")
-
 
 # validar formato de fecha 
 def obtener_fecha_valida():
@@ -194,14 +220,17 @@ def registrar_consulta():
 
 # Función para listar mascotas
 def listar_mascotas():
-    print("\n--- Lista de Mascotas Registradas ---")
-    if not mascotas_registradas:
-        print("No hay mascotas registradas.\n")
-    else:
-        for mascota in mascotas_registradas.values():
-            print(mascota)
-            print("-" * 40)
+    print("\n--- Lista de Mascotas Registradas (Base de Datos) ---")
+    respuesta = listar_mascota_dueno()
 
+    if not respuesta["Respuesta"]:
+        print(respuesta["Mensaje"])
+        return
+
+    for dato in respuesta["Datos"]:
+        print(f"Mascota: {dato['Nombre Mascota']}, {dato['Especie']} - {dato['Raza']}, Edad: {dato['Edad']} años")
+        print(f"Dueño: {dato['Nombre Dueño']}, Tel: {dato['Teléfono']}, Dirección: {dato['Dirección']}")
+        print("-" * 40)
 
 # Función para ver historial de una mascota
 def ver_historial_consultas():

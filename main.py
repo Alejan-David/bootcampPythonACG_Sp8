@@ -1,5 +1,5 @@
-from utils.funciones import registrar_mascota, registrar_consulta, listar_mascotas, ver_historial_consultas, cargar_datos_almacenados
-from utils.logger import logger
+from utilidades.funciones import registrar_mascota, registrar_consulta, listar_mascotas, ver_historial_consultas, cargar_datos_almacenados
+from utilidades.logger import logger
 
 # Menú principal
 def menu():
