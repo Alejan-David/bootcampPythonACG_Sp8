@@ -1,7 +1,6 @@
 from utilidades.funciones import registrar_mascota, registrar_consulta, listar_mascotas, ver_historial_consultas, cargar_datos_almacenados
 from utilidades.logger import logger
 # Menú principal
-#cambio 2
 def menu():
     while True:
         print(
