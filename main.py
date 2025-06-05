@@ -1,6 +1,5 @@
 from utilidades.funciones import registrar_mascota, registrar_consulta, listar_mascotas, ver_historial_consultas, cargar_datos_almacenados
 from utilidades.logger import logger
-#ensayando branch de git 
 # Menú principal
 def menu():
     while True:
