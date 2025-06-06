@@ -155,3 +155,7 @@ Traceback (most recent call last):
     Mascota(
 TypeError: Mascota.__init__() missing 1 required positional argument: 'dueno'
 2025-06-06 18:08:34,725 - INFO - Aplicación iniciada
+2025-06-06 18:20:34,695 - INFO - Aplicación iniciada
+2025-06-06 18:21:22,351 - INFO - Dueño registrado: Esteban - Documento: 333
+2025-06-06 18:22:24,244 - INFO - Dueño modificado: 333
+2025-06-06 18:24:06,146 - INFO - Dueño eliminado: 333
