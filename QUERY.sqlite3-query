@@ -1,9 +1,0 @@
--- database: ./bd_clinica_veterinaria
-
--- Use the ▷ button in the top right corner to run the entire file.
-
-SELECT * FROM tabla_duenos;
-
-DROP TABLE tabla_duenos;
-DROP TABLE tabla_mascotas;
-

@@ -93,3 +93,65 @@
 2025-06-03 22:52:57,418 - INFO - Aplicación iniciada
 2025-06-03 22:52:57,420 - INFO - Datos de mascotas cargados correctamente desde CSV.
 2025-06-03 22:52:57,454 - INFO - Consultas cargadas correctamente desde JSON.
+2025-06-06 12:47:50,448 - INFO - Aplicación iniciada
+2025-06-06 12:48:17,751 - INFO - Dueño registrado: Gabriel - Documento: 1037671690
+2025-06-06 12:48:59,487 - INFO - Aplicación iniciada
+2025-06-06 12:49:05,421 - ERROR - Error buscando dueño y mascotas: listar_mascota_dueno_bd() takes 0 positional arguments but 1 was given
+2025-06-06 12:50:27,250 - INFO - Dueño modificado: 1037671690
+2025-06-06 12:51:06,884 - ERROR - Error buscando dueño y mascotas: listar_mascota_dueno_bd() takes 0 positional arguments but 1 was given
+2025-06-06 12:53:28,635 - INFO - Aplicación iniciada
+2025-06-06 12:53:45,383 - ERROR - Error buscando dueño y mascotas: listar_mascota_dueno_bd() takes 0 positional arguments but 1 was given
+2025-06-06 13:14:39,055 - INFO - Aplicación iniciada
+2025-06-06 13:30:29,697 - INFO - Aplicación iniciada
+2025-06-06 13:30:54,437 - INFO - Aplicación iniciada
+2025-06-06 15:15:54,253 - INFO - Aplicación iniciada
+2025-06-06 15:16:02,093 - ERROR - Error listando dueños y mascotas: listar_mascota_dueno_bd() missing 1 required positional argument: 'datos'
+2025-06-06 15:22:16,903 - INFO - Aplicación iniciada
+2025-06-06 15:22:22,885 - ERROR - Error listando dueños y mascotas: listar_mascota_dueno_bd() missing 1 required positional argument: 'datos'
+2025-06-06 15:22:30,462 - ERROR - Error buscando dueño y mascotas: Dueno.__init__() missing 1 required positional argument: 'id'
+2025-06-06 16:55:59,311 - INFO - Aplicación iniciada
+2025-06-06 16:56:04,983 - ERROR - Error listando dueños y mascotas
+Traceback (most recent call last):
+  File "d:\Softserve\Curso Práctico Python\Sprint 8\bootcampPythonACG_Sp8\utilidades\funciones\dueno.py", line 114, in listar_duenos
+    nombre=r["nombre"],
+           ~^^^^^^^^^^
+KeyError: 'nombre'
+2025-06-06 16:59:26,713 - INFO - Aplicación iniciada
+2025-06-06 16:59:53,433 - INFO - Dueño registrado: Gab - Documento: 1037671690
+2025-06-06 17:01:06,145 - INFO - Dueño modificado: 1037671690
+2025-06-06 17:01:41,485 - ERROR - Error listando dueños y mascotas
+Traceback (most recent call last):
+  File "d:\Softserve\Curso Práctico Python\Sprint 8\bootcampPythonACG_Sp8\utilidades\funciones\dueno.py", line 114, in listar_duenos
+    nombre=r["nombre"],
+           ~^^^^^^^^^^
+KeyError: 'nombre'
+2025-06-06 17:02:05,706 - INFO - Aplicación iniciada
+2025-06-06 17:08:19,007 - INFO - Dueño eliminado: 1037671690
+2025-06-06 17:18:03,804 - INFO - Aplicación iniciada
+2025-06-06 17:18:37,680 - INFO - Dueño registrado: Gab - Documento: 1037671690
+2025-06-06 17:41:56,025 - INFO - Aplicación iniciada
+2025-06-06 17:44:57,698 - INFO - Aplicación iniciada
+2025-06-06 17:45:21,824 - INFO - Aplicación iniciada
+2025-06-06 17:45:51,859 - INFO - Mascota registrada: Fabri - Documento dueño: 1037671690
+2025-06-06 18:01:30,787 - INFO - Aplicación iniciada
+2025-06-06 18:03:18,184 - INFO - Aplicación iniciada
+2025-06-06 18:03:27,544 - ERROR - Error buscando dueño y mascotas
+Traceback (most recent call last):
+  File "d:\Softserve\Curso Práctico Python\Sprint 8\bootcampPythonACG_Sp8\utilidades\funciones\dueno.py", line 84, in buscar_dueno_por_documento
+    print(f"  - {mascota}")
+          ^^^^^^^^^^^^^^^^
+  File "d:\Softserve\Curso Práctico Python\Sprint 8\bootcampPythonACG_Sp8\modelos\mascota.py", line 12, in __str__
+    return f"Mascota: {self.nombre}, {self.especie} - {self.raza}, Edad: {self.edad} {unidad_edad}\n{self.dueno}"
+                                                                                                     ^^^^^^^^^^
+AttributeError: 'Mascota' object has no attribute 'dueno'
+2025-06-06 18:04:08,373 - INFO - Aplicación iniciada
+2025-06-06 18:06:26,617 - INFO - Aplicación iniciada
+2025-06-06 18:06:37,379 - ERROR - Error buscando dueño y mascotas
+Traceback (most recent call last):
+  File "d:\Softserve\Curso Práctico Python\Sprint 8\bootcampPythonACG_Sp8\utilidades\funciones\dueno.py", line 69, in buscar_dueno_por_documento
+    mascotas = [
+               ^
+  File "d:\Softserve\Curso Práctico Python\Sprint 8\bootcampPythonACG_Sp8\utilidades\funciones\dueno.py", line 70, in <listcomp>
+    Mascota(
+TypeError: Mascota.__init__() missing 1 required positional argument: 'dueno'
+2025-06-06 18:08:34,725 - INFO - Aplicación iniciada

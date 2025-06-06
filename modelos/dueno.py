@@ -1,9 +1,15 @@
-# Clase Dueño
 class Dueno:
-    def __init__(self, nombre, telefono, direccion):
+    def __init__(self, id, documento, nombre, telefono, direccion, activo='s'):
+        self.id = id
+        self.documento = documento
         self.nombre = nombre
         self.telefono = telefono
         self.direccion = direccion
+        self.activo = activo
 
     def __str__(self):
-        return f"Dueño: {self.nombre}, Tel: {self.telefono}, Dirección: {self.direccion}"
+        estado = "Activo" if self.activo == 's' else "Inactivo"
+        return (
+            f"Documento: {self.documento}, Nombre: {self.nombre}, "
+            f"Tel: {self.telefono}, Dirección: {self.direccion}, Estado: {estado}"
+        )
