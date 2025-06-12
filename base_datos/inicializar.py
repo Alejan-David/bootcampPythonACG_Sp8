@@ -23,7 +23,7 @@ def inicializar_bd():
                 especie TEXT NOT NULL,
                 raza TEXT NOT NULL,
                 edad INTEGER NOT NULL,
-                id_dueno INTEGER NOT NULL,
+                id_dueno INTEGER NOT NULL,                
                 activo TEXT NOT NULL DEFAULT 's',
                 FOREIGN KEY (id_dueno) REFERENCES tabla_duenos(id)
             );
@@ -37,6 +37,7 @@ def inicializar_bd():
             motivo TEXT NOT NULL,
             diagnostico TEXT NOT NULL, 
             id_mascota INTEGER NOT NULL,
+            activo TEXT NOT NULL DEFAULT 's',
             FOREIGN KEY (id_mascota) REFERENCES tabla_mascotas(id)
         );
         ''')

@@ -5,11 +5,13 @@ from base_datos.funciones.dueno import (
     registrar_dueno_bd,
     eliminar_dueno_bd,
     modificar_dueno_bd,
-    listar_mascota_dueno_bd,
     buscar_dueno_por_documento_bd,
     listar_todos_los_duenos_y_mascotas_bd
 )
 
+from base_datos.funciones.mascota import (
+    listar_mascotas_por_dueno_bd
+)
 
 def registrar_dueno():
     """
@@ -31,7 +33,7 @@ def registrar_dueno():
 
         direccion = input("Dirección: ").strip()
 
-        dueno = Dueno(id=None, documento=documento, nombre=nombre, telefono=telefono, direccion=direccion, activo='s')
+        dueno = Dueno(id=None, documento=documento, nombre=nombre, telefono=telefono, direccion=direccion, activo=None)
         respuesta = registrar_dueno_bd(dueno.__dict__)
 
         if respuesta["Respuesta"]:
@@ -48,38 +50,51 @@ def registrar_dueno():
 
 def buscar_dueno_por_documento():
     """
-    Busca un dueño por documento e imprime el resultado junto con sus mascotas.
+    Busca un dueño por documento e imprime sus datos junto con las mascotas registradas.
     """
     try:
         documento = input("\nIngrese el documento del dueño a buscar: ").strip()
+        if not documento:
+            print("Debe ingresar un documento.")
+            return
+
+        # Buscar dueño
         respuesta = buscar_dueno_por_documento_bd(documento)
         if not respuesta["Respuesta"]:
             print(respuesta["Mensaje"])
             return
 
-        datos = respuesta["Datos"]
-        dueno = Dueno(**datos)
+        dueno = Dueno(**respuesta["Datos"])
         print(f"\nDueño encontrado:\n{dueno}")
 
-        respuesta_mascotas = listar_mascota_dueno_bd({"documento": documento})
+        # Buscar mascotas del dueño
+        respuesta_mascotas = listar_mascotas_por_dueno_bd({"documento": documento})
         if not respuesta_mascotas["Respuesta"]:
             print(respuesta_mascotas["Mensaje"])
             return
 
-        mascotas = [
-            Mascota(
-                nombre=m["nombre_mascota"],
-                especie=m["especie"],
-                raza=m["raza"],
-                edad=m["edad"],
-                dueno=dueno
-            )
-            for m in respuesta_mascotas["Datos"]
-            if m.get("nombre_mascota")
-        ]
+        mascotas_data = respuesta_mascotas["Datos"]
+        mascotas = []
 
+        for m in mascotas_data:
+            if not m.get("nombre_mascota"):
+                continue  # Evitar registros nulos por LEFT JOIN
+
+            datos_mascota = {
+                "id": m["id_mascota"],
+                "nombre": m["nombre_mascota"],
+                "especie": m["especie"],
+                "raza": m["raza"],
+                "edad": m["edad"],
+                "id_dueno": m["id_dueno"],
+                "activo": m["activo"]
+            }
+
+            mascotas.append(Mascota(**datos_mascota))
+
+        # Mostrar resultados
         if mascotas:
-            print("Mascotas registradas:")
+            print("\nMascotas registradas:")
             for mascota in mascotas:
                 print(f"  - {mascota}")
         else:
@@ -87,7 +102,7 @@ def buscar_dueno_por_documento():
 
     except Exception as e:
         logger.exception("Error buscando dueño y mascotas")
-        print("Ocurrió un error al buscar el dueño.")
+        print("Ocurrió un error al buscar el dueño y sus mascotas.")
 
 
 def listar_duenos():
@@ -107,15 +122,18 @@ def listar_duenos():
         for r in respuesta["Datos"]:
             documento = r["documento"]
             if documento not in duenos_agrupados:
+                # Construir el diccionario compatible con el constructor de Dueno
+                datos_dueno = {
+                    "id": r["id_dueno"],
+                    "documento": r["documento"],
+                    "nombre": r["nombre"],
+                    "telefono": r["telefono"],
+                    "direccion": r["direccion"],
+                    "activo": r["activo"]
+                }
+
                 duenos_agrupados[documento] = {
-                    "dueno": Dueno(
-                        id=r["id_dueno"],
-                        documento=documento,
-                        nombre=r["nombre"],  # Corrección importante
-                        telefono=r["telefono"],
-                        direccion=r["direccion"],
-                        activo='s'
-                    ),
+                    "dueno": Dueno(**datos_dueno),
                     "mascotas": []
                 }
 
@@ -189,7 +207,7 @@ def modificar_dueno():
         datos = respuesta["Datos"]
         dueno = Dueno(**datos)
 
-        print(f"\nDueño actual:\n{dueno}")
+        print(f"\nInformación actual del dueño:\n{dueno}")
         print("Ingrese los nuevos datos (deje en blanco para mantener el valor actual):")
 
         nombre = input(f"Nombre [{dueno.nombre}]: ").strip().title() or dueno.nombre

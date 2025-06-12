@@ -112,37 +112,6 @@ def modificar_dueno_bd(datos):
         miConexion.close()
 
 
-def listar_mascota_dueno_bd(datos):
-    """
-    Lista las mascotas activas de un dueño específico.
-    
-    :param datos: Diccionario con al menos la clave 'documento'.
-    :return: Diccionario con 'Respuesta' (bool), 'Mensaje' (str) y 'Datos' (list).
-    """
-    try:
-        miConexion = conectar()
-        miCursor = miConexion.cursor()
-
-        miCursor.execute('''
-            SELECT d.id AS id_dueno, d.documento, d.nombre, d.telefono, d.direccion,
-                   m.nombre AS nombre_mascota, m.especie, m.raza, m.edad
-            FROM tabla_duenos d
-            LEFT JOIN tabla_mascotas m ON d.id = m.id_dueno AND m.activo = 's'
-            WHERE d.activo = 's' AND d.documento = ?
-        ''', (datos["documento"],))
-
-        columnas = [col[0] for col in miCursor.description]
-        resultados = [dict(zip(columnas, fila)) for fila in miCursor.fetchall()]
-
-        return {"Respuesta": True, "Datos": resultados}
-
-    except Exception as e:
-        return {"Respuesta": False, "Mensaje": f"Error listando mascotas del dueño: {str(e)}"}
-
-    finally:
-        miConexion.close()
-
-
 def buscar_dueno_por_documento_bd(documento):
     """
     Busca un dueño activo por su documento.
@@ -155,7 +124,7 @@ def buscar_dueno_por_documento_bd(documento):
         miCursor = miConexion.cursor()
 
         miCursor.execute('''
-            SELECT id, documento, nombre, telefono, direccion
+            SELECT id, documento, nombre, telefono, direccion, activo
             FROM tabla_duenos
             WHERE documento = ? AND activo = 's'
         ''', (documento,))
@@ -179,7 +148,7 @@ def buscar_dueno_por_documento_bd(documento):
 def listar_todos_los_duenos_y_mascotas_bd():
     """
     Lista todos los dueños activos y sus mascotas activas.
-    
+
     :return: Diccionario con 'Respuesta' (bool), 'Mensaje' (str) y 'Datos' (list).
     """
     try:
@@ -187,7 +156,7 @@ def listar_todos_los_duenos_y_mascotas_bd():
         miCursor = miConexion.cursor()
 
         miCursor.execute('''
-            SELECT d.id AS id_dueno, d.documento, d.nombre AS nombre, d.telefono, d.direccion,
+            SELECT d.id AS id_dueno, d.documento, d.nombre AS nombre, d.telefono, d.direccion, d.activo,
                    m.nombre AS nombre_mascota, m.especie, m.raza, m.edad
             FROM tabla_duenos d
             LEFT JOIN tabla_mascotas m ON d.id = m.id_dueno AND m.activo = 's'

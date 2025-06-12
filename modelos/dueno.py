@@ -1,5 +1,5 @@
 class Dueno:
-    def __init__(self, id, documento, nombre, telefono, direccion, activo='s'):
+    def __init__(self, id, documento, nombre, telefono, direccion, activo):
         self.id = id
         self.documento = documento
         self.nombre = nombre
